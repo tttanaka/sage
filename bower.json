@@ -7,30 +7,31 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "bootstrap-sass": "3.3.5"
+    "lightslider": "~1.1.*",
+    "normalize-css": "normalize.css#~3.0.*",
+    "scrollreveal": "scrollReveal.js#~2.3.*",
+    "slideout.js": "~0.1.*",
+    "bootstrap-sass": "~3.3.5"
   },
   "overrides": {
-    "bootstrap-sass": {
+    "lightslider": {
       "main": [
-        "./assets/stylesheets/_bootstrap.scss",
-        "./assets/javascripts/bootstrap/transition.js",
-        "./assets/javascripts/bootstrap/alert.js",
-        "./assets/javascripts/bootstrap/button.js",
-        "./assets/javascripts/bootstrap/carousel.js",
-        "./assets/javascripts/bootstrap/collapse.js",
-        "./assets/javascripts/bootstrap/dropdown.js",
-        "./assets/javascripts/bootstrap/modal.js",
-        "./assets/javascripts/bootstrap/tooltip.js",
-        "./assets/javascripts/bootstrap/popover.js",
-        "./assets/javascripts/bootstrap/scrollspy.js",
-        "./assets/javascripts/bootstrap/tab.js",
-        "./assets/javascripts/bootstrap/affix.js",
-        "./assets/fonts/bootstrap/glyphicons-halflings-regular.eot",
-        "./assets/fonts/bootstrap/glyphicons-halflings-regular.svg",
-        "./assets/fonts/bootstrap/glyphicons-halflings-regular.ttf",
-        "./assets/fonts/bootstrap/glyphicons-halflings-regular.woff",
-        "./assets/fonts/bootstrap/glyphicons-halflings-regular.woff2"
+        "./dist/js/lightslider.js"
+      ]
+    },
+    "slideout.js": {
+      "main": [
+        "./dist/slideout.js"
+      ]
+    },
+    "scrollreveal": {
+      "main": [
+        "./dist/scrollReveal.js"
       ]
     }
+  },
+  "devDependencies": {
+    "Slidebars": "slidebars#~0.10.*",
+    "font-awesome": "~4.4.*"
   }
 }

@@ -27,7 +27,11 @@ function setup() {
   // Register wp_nav_menu() menus
   // http://codex.wordpress.org/Function_Reference/register_nav_menus
   register_nav_menus([
-    'primary_navigation' => __('Primary Navigation', 'sage')
+    'primary_navigation' => __('Primary Navigation', 'sage'),
+    'footer_section1_navigation' => __('Footer Navigation - Section 1', 'inkling'),
+    'footer_section2_navigation' => __('Footer Navigation - Section 2', 'inkling'),
+    'social_media_navigation' => __('Social Media Navigation', 'inkling'),
+    'login_navigation' => __('Login/Contact Navigation', 'inkling')
   ]);
 
   // Enable post thumbnails
@@ -49,6 +53,29 @@ function setup() {
   add_editor_style(Assets\asset_path('styles/main.css'));
 }
 add_action('after_setup_theme', __NAMESPACE__ . '\\setup');
+
+/**
+ * Remove admin menu items
+ */
+function remove_admin_menus() {
+
+  // Top-Level Menus
+  // remove_menu_page( 'index.php' );                  //Dashboard
+  // remove_menu_page( 'edit.php' );                   //Posts
+  // remove_menu_page( 'upload.php' );                 //Media
+  // remove_menu_page( 'edit.php?post_type=page' );    //Pages
+  remove_menu_page( 'edit-comments.php' );          //Comments
+  // remove_menu_page( 'themes.php' );                 //Appearance
+  // remove_menu_page( 'plugins.php' );                //Plugins
+  // remove_menu_page( 'users.php' );                  //Users
+  // remove_menu_page( 'tools.php' );                  //Tools
+  // remove_menu_page( 'options-general.php' );        //Settings
+
+  //Sub-Level Menus
+  global $submenu;
+	unset($submenu['themes.php'][6]); // remove customize.php
+}
+add_action('admin_menu', __NAMESPACE__ . '\\remove_admin_menus');
 
 /**
  * Register sidebars

@@ -17,6 +17,7 @@ var plumber      = require('gulp-plumber');
 var rev          = require('gulp-rev');
 var runSequence  = require('run-sequence');
 var sass         = require('gulp-sass');
+var postcss      = require('gulp-postcss');
 var sourcemaps   = require('gulp-sourcemaps');
 var uglify       = require('gulp-uglify');
 
@@ -86,15 +87,37 @@ var cssTasks = function(filename) {
       return gulpif(enabled.maps, sourcemaps.init());
     })
     .pipe(function() {
-      return gulpif('*.less', less());
-    })
-    .pipe(function() {
-      return gulpif('*.scss', sass({
-        outputStyle: 'nested', // libsass doesn't support expanded yet
-        precision: 10,
-        includePaths: ['.'],
-        errLogToConsole: !enabled.failStyleTask
-      }));
+      return gulpif('*.css', postcss([
+    		require('postcss-partial-import'),
+    		require("postcss-nested"),
+    		require("postcss-simple-extend"),
+        require('cssnext')({
+            customProperties: true,
+            colorFunction: true,
+            customSelectors: true,
+            customMedia: true,
+            mediaQueriesRange: true,
+            rem: true,
+            compress: false,
+            import: false,
+            url: false,
+            autoprefixer: false
+        }),
+        require('postcss-mixins'),
+    		require('lost')
+    		// require('rucksack-css')({
+        //   fallbacks: false,
+        //   autoprefixer: false
+        // })
+        // require('postcss-pxtorem')({
+        //   root_value: 16,
+        //   unit_precision: 5,
+        //   prop_white_list: ['font', 'font-size', 'line-height', 'letter-spacing'],
+        //   selector_black_list: [],
+        //   replace: false,
+        //   media_query: false
+        // })
+      ]));
     })
     .pipe(concat, filename)
     .pipe(autoprefixer, {

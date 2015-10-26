@@ -4,13 +4,21 @@
       "files": [
         "scripts/main.js"
       ],
+      "vendor": [
+        "assets/scripts/vendors/backgroundVideo.js"
+      ],
       "main": true
     },
     "main.css": {
       "files": [
-        "styles/main.scss"
+        "styles/main.css"
       ],
       "main": true
+    },
+    "editor-style.css": {
+      "files": [
+        "styles/editor-style.css"
+      ]
     },
     "jquery.js": {
       "bower": ["jquery"]

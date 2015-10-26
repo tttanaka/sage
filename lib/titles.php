@@ -22,3 +22,14 @@ function title() {
     return get_the_title();
   }
 }
+
+/**
+ * Page subtitles
+ */
+// function subtitle() {
+//   if ( is_page_template('template-locations.php') ) {
+//     return __('Proudly Serving the ' . get_the_title() . ' Area', 'inkling');
+//   } else {
+//     return get_field('page_subtitle_header');
+//   }
+// }
